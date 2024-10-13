@@ -22,6 +22,33 @@ Danh sách các yêu cầu đang đề xuất thêm:
   * Qui đổi tiền tệ 
   * ...
 
+# Các biểu mẫu và quy định được đề xuất
+  - QĐ1: Có 3 loại tiết kiệm (không kỳ hạn, 3 tháng, 6 tháng). Số tiền gởi (ban đầu) tối thiểu là 1.000.000đ
+    ![image](https://github.com/user-attachments/assets/4d7b1484-1a8f-47a4-a3f9-1c443852ecdf)
+
+  - QĐ2: Chỉ nhận gởi thêm tiền khi đến kỳ hạn tính lãi suất của các loại tiết kiệm tương ứng. Số tiền gởi thêm tối
+thiểu là 100.000đ
+    ![image](https://github.com/user-attachments/assets/af0d1018-8488-4ac7-b752-5d1bb3be3c71)
+
+  - QĐ3: Lãi suất là 0.15% đối với loại không kỳ hạn, 0.5% với kỳ hạn 3 tháng và 0.55% với kỳ hạn 6 tháng.
+    Tiền lãi = số dư * lãi suất * kỳ hạn (số tháng của loại tiết kiệm tương ứng).
+    Loại tiết kiệm có kỳ hạn chỉ được rút khi quá kỳ hạn và phải rút hết toàn bộ, khi này tiền lãi được tính với mức lãi suất của loại không kỳ hạn.
+    Loại tiết kiệm không kỳ hạn được rút khi gửi trên 15 ngày và có thể rút số tiền <= số dư hiện có. Sổ sau khi rút hết tiền sẽ tự động đóng.
+
+    ![image](https://github.com/user-attachments/assets/ff7b39e9-c1c5-4f77-a435-7b969e4c7803)
+
+- Biểu mẫu quản lý sổ tiết kiệm
+  
+  ![image](https://github.com/user-attachments/assets/31122d1d-85aa-4053-a466-8a587af8e267)
+
+- Biểu mẫu quản lý hoạt động ngày và hoạt động tháng
+  ![image](https://github.com/user-attachments/assets/3538a9f1-a2a9-4d79-8295-5bb39ea093b3)
+
+- QĐ6: Người dùng có thể thay đổi các qui định như sau
+    - QĐ1: Thay đổi số lượng các loại kỳ hạn, tiền gởi tối thiểu.
+    - QĐ3: Thay đổi thời gian gởi tối thiểu và lãi suất các loại kỳ hạn.
+
+
 
 
 
