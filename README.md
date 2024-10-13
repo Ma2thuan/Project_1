@@ -1,3 +1,8 @@
+# Tên thành viên: 
+  - Nguyễn Ngô Thành Tài (Nhóm trưởng)
+  - Trịnh Nguyễn Vi Na
+  - Lê Công Thuận                
+
 # Project 1 - Tên đề tài: Quản lý sổ tiết kiệm
 
 ![image](https://github.com/user-attachments/assets/37887ddc-5af4-45bd-ab85-0093475a5bc2)
@@ -16,4 +21,7 @@ Danh sách các yêu cầu đang đề xuất thêm:
   * Công cụ tính giá trị thật đồng tiền sau X năm (Pending)
   * Qui đổi tiền tệ 
   * ...
+
+
+
 
