@@ -1,3 +1,10 @@
+# Tổng quan đề tài 
+  - Tên Thành Viên
+  - Đề tài và yêu cầu
+  - Các biểu mẫu và quy định
+  - Kế hoạch tiến độ
+  - ...
+
 # Tên thành viên: 
   - Nguyễn Ngô Thành Tài (Nhóm trưởng)
   - Trịnh Nguyễn Vi Na
@@ -48,6 +55,50 @@ thiểu là 100.000đ
     - QĐ1: Thay đổi số lượng các loại kỳ hạn, tiền gởi tối thiểu.
     - QĐ3: Thay đổi thời gian gởi tối thiểu và lãi suất các loại kỳ hạn.
 
+# Kế hoạch tiến độ
+## Giai đoạn 1: Phân tích yêu cầu (2 tuần) - 19/9 đến 2/10
+- **Tuần 1 (19/9 - 25/9):**  
+  - **Thành Tài:** Thu thập yêu cầu từ các bên liên quan, phân tích yêu cầu và lập tài liệu đặc tả.
+- **Tuần 2 (26/9 - 2/10):**  
+  - **Thành Tài:** Xác nhận yêu cầu và hoàn tất tài liệu đặc tả, xây dựng sơ đồ luồng công việc và quy trình nghiệp vụ.
+
+## Giai đoạn 2: Thiết kế giao diện (2 tuần) - 3/10 đến 16/10
+- **Tuần 3 (3/10 - 9/10):**  
+  - **Thành Tài:** Thiết kế wireframe và prototype cho các trang chính của ứng dụng.
+- **Tuần 4 (10/10 - 16/10):**  
+  - **Thành Tài:** Hoàn thiện thiết kế giao diện chi tiết và thống nhất với các thành viên trong nhóm về giao diện cuối cùng.
+
+## Giai đoạn 3: Phát triển tính năng (6 tuần) - 17/10 đến 27/11
+- **Tuần 5 (17/10 - 23/10):**  
+  - **Vy Na & Công Thuận:** Thiết lập môi trường phát triển, tạo cơ sở dữ liệu và cài đặt các cấu hình ban đầu.
+- **Tuần 6 (24/10 - 30/10):**  
+  - **Vy Na & Công Thuận:** Phát triển các chức năng cơ bản như đăng ký, đăng nhập, và quản lý người dùng.
+- **Tuần 7 (31/10 - 6/11):**  
+  - **Vy Na & Công Thuận:** Xây dựng chức năng tạo và quản lý sổ tiết kiệm.
+- **Tuần 8 (7/11 - 13/11):**  
+  - **Vy Na & Công Thuận:** Hoàn thiện chức năng nạp, rút tiền và tính lãi.
+- **Tuần 9 (14/11 - 20/11):**  
+  - **Vy Na & Công Thuận:** Tích hợp giao diện người dùng với các chức năng đã phát triển.
+- **Tuần 10 (21/11 - 27/11):**  
+  - **Vy Na & Công Thuận:** Kiểm tra và xử lý lỗi, tối ưu hóa hiệu suất.
+
+## Giai đoạn 4: Kiểm thử (2 tuần) - 28/11 đến 11/12
+- **Tuần 11 (28/11 - 4/12):**  
+  - **Thành Tài:** Kiểm thử chức năng, kiểm tra giao diện và trải nghiệm người dùng.
+- **Tuần 12 (5/12 - 11/12):**  
+  - **Thành Tài:** Kiểm thử tích hợp, đảm bảo tất cả các chức năng hoạt động ổn định và không có lỗi lớn.
+
+## Giai đoạn 5: Triển khai (1 tuần) - 12/12 đến 18/12
+- **Tuần 13 (12/12 - 18/12):**  
+  - **Thành Tài, Vy Na & Công Thuận:** Chuẩn bị và triển khai website lên môi trường sản xuất, thực hiện kiểm tra sau triển khai.
+
+## Dự phòng và hoàn tất dự án - 19/12 đến 31/12
+- **Tuần 14 - 15 (19/12 - 31/12):**  
+  - Xử lý các vấn đề phát sinh, hoàn thiện tài liệu và bàn giao dự án.
+
+---
+
+Kế hoạch này đảm bảo các bước được thực hiện tuần tự và có thời gian dự phòng để giải quyết vấn đề nếu có.
 
 
 
