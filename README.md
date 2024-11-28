@@ -7,7 +7,7 @@
 
 # Tên thành viên: 
   - Nguyễn Ngô Thành Tài (Nhóm trưởng)
-  - Trịnh Nguyễn Vi Na
+  - Trịnh Nguyễn Vy Na
   - Lê Công Thuận                
 
 # Project 1 - Tên đề tài: Quản lý sổ tiết kiệm
