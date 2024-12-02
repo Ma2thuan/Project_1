@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\THANH TAI\\Desktop\\Project_1\\TestProject\\TestProject.csproj": {}
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (3)\\Project_1\\TestProject\\TestProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\THANH TAI\\Desktop\\Project_1\\TestProject\\TestProject.csproj": {
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (3)\\Project_1\\TestProject\\TestProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\THANH TAI\\Desktop\\Project_1\\TestProject\\TestProject.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (3)\\Project_1\\TestProject\\TestProject.csproj",
         "projectName": "TestProject",
-        "projectPath": "C:\\Users\\THANH TAI\\Desktop\\Project_1\\TestProject\\TestProject.csproj",
-        "packagesPath": "C:\\Users\\THANH TAI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\THANH TAI\\Desktop\\Project_1\\TestProject\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (3)\\Project_1\\TestProject\\TestProject.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (3)\\Project_1\\TestProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\THANH TAI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,34 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.8.0, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -74,12 +50,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

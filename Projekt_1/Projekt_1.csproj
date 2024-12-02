@@ -127,6 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\assets\demo\datatables-demo.js" />
+    <Content Include="Content\assets\img\error-404-monochrome.svg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -143,6 +148,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\styles.css" />
+    <Content Include="Content\js\datatables-simple-demo.js" />
+    <Content Include="Content\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
