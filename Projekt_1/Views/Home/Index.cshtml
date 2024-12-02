@@ -36,7 +36,7 @@
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("login", "Home")">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -59,8 +59,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="~/Views/Home/layout-sidenav-light.cshtml">Static Navigation</a>
-                                <a class="nav-link" href="~/Views/Home/layout-static.cshtml">Light Sidenav</a>
+                                <a class="nav-link" href="@Url.Action("static_nav", "Home")">Static Navigation</a>
+                                <a class="nav-link" href="@Url.Action("light_nav", "Home")">Light Sidenav</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -95,7 +95,7 @@
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
+                        <a class="nav-link" href="@Url.Action("chart", "Home")">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Charts
                         </a>

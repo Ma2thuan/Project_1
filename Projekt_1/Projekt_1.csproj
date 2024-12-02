@@ -171,6 +171,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Home\401.cshtml" />
+    <None Include="Views\Home\404.cshtml" />
+    <None Include="Views\Home\500.cshtml" />
+    <None Include="Views\Home\charts.cshtml" />
+    <None Include="Views\Home\layout-sidenav-light.cshtml" />
+    <None Include="Views\Home\layout-static.cshtml" />
+    <None Include="Views\Home\login.cshtml" />
+    <None Include="Views\Home\password.cshtml" />
+    <None Include="Views\Home\register.cshtml" />
+    <None Include="Views\Home\tables.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
