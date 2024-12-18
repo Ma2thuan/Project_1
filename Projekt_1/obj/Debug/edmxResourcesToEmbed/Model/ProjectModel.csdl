@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project1DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="interestRate">
+    <Key>
+      <PropertyRef Name="term" />
+    </Key>
+    <Property Name="term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="interestRate1" Type="Double" />
+  </EntityType>
+  <EntityType Name="passbook">
+    <Key>
+      <PropertyRef Name="passbook_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="passbook_id" Type="Int32" Nullable="false" />
+    <Property Name="balance" Type="Double" />
+    <Property Name="startDate" Type="DateTime" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
+    <Property Name="term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK__passbook__user_i__398D8EEE" FromRole="passbook" ToRole="users" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="transactionDate" Type="DateTime" Precision="0" />
+    <Property Name="transactionAmount" Type="Double" />
+    <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK__Transacti__user___3E52440B" FromRole="Transactions" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_birth" Type="DateTime" Precision="0" />
+    <Property Name="user_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="user_identity" Type="Int32" />
+    <Property Name="user_phone" Type="Int32" />
+    <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__user_i__398D8EEE" FromRole="users" ToRole="passbook" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__user___3E52440B" FromRole="users" ToRole="Transactions" />
+  </EntityType>
+  <Association Name="FK__passbook__user_i__398D8EEE">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__user___3E52440B">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Project1DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="interestRates" EntityType="Self.interestRate" />
+    <EntitySet Name="passbooks" EntityType="Self.passbook" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__passbook__user_i__398D8EEE" Association="Self.FK__passbook__user_i__398D8EEE">
+      <End Role="users" EntitySet="users" />
+      <End Role="passbook" EntitySet="passbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__user___3E52440B" Association="Self.FK__Transacti__user___3E52440B">
+      <End Role="users" EntitySet="users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <FunctionImport Name="DepositMoney">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="passbook_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project1DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="interestRates">
+    <Key>
+      <PropertyRef Name="term" />
+    </Key>
+    <Property Name="term" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="interestRate" Type="float" />
+  </EntityType>
+  <EntityType Name="passbook">
+    <Key>
+      <PropertyRef Name="passbook_id" />
+    </Key>
+    <Property Name="user_id" Type="int" />
+    <Property Name="passbook_id" Type="int" Nullable="false" />
+    <Property Name="balance" Type="float" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="endDate" Type="date" />
+    <Property Name="term" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="transactionDate" Type="date" />
+    <Property Name="transactionAmount" Type="float" />
+    <Property Name="transactionType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_birth" Type="date" />
+    <Property Name="user_address" Type="nvarchar" MaxLength="255" />
+    <Property Name="user_identity" Type="int" />
+    <Property Name="user_phone" Type="int" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__passbook__user_i__398D8EEE">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__user___3E52440B">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DepositMoney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="passbook_id" Type="int" Mode="In" />
+    <Parameter Name="amount" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="Project1DBModelStoreContainer">
+    <EntitySet Name="interestRates" EntityType="Self.interestRates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="passbook" EntityType="Self.passbook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__passbook__user_i__398D8EEE" Association="Self.FK__passbook__user_i__398D8EEE">
+      <End Role="users" EntitySet="users" />
+      <End Role="passbook" EntitySet="passbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__user___3E52440B" Association="Self.FK__Transacti__user___3E52440B">
+      <End Role="users" EntitySet="users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

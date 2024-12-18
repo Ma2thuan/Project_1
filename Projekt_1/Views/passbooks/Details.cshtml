@@ -1,0 +1,59 @@
+﻿@model Projekt_1.Model.passbook
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>passbook</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.term)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.term)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.user_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.user_address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.passbook_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

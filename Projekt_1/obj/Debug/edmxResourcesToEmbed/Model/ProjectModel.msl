@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Project1DBModelStoreContainer" CdmEntityContainer="Project1DBEntities">
+    <EntitySetMapping Name="interestRates">
+      <EntityTypeMapping TypeName="Project1DBModel.interestRate">
+        <MappingFragment StoreEntitySet="interestRates">
+          <ScalarProperty Name="term" ColumnName="term" />
+          <ScalarProperty Name="interestRate1" ColumnName="interestRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="passbooks">
+      <EntityTypeMapping TypeName="Project1DBModel.passbook">
+        <MappingFragment StoreEntitySet="passbook">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="passbook_id" ColumnName="passbook_id" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="term" ColumnName="term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="Project1DBModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="transactionAmount" ColumnName="transactionAmount" />
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Project1DBModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_birth" ColumnName="user_birth" />
+          <ScalarProperty Name="user_address" ColumnName="user_address" />
+          <ScalarProperty Name="user_identity" ColumnName="user_identity" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DepositMoney" FunctionName="Project1DBModel.Store.DepositMoney" />
+  </EntityContainerMapping>
+</Mapping>

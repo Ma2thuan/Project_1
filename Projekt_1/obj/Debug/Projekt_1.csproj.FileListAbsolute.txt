@@ -77,3 +77,7 @@ C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\obj\Debug\
 C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\obj\Debug\Projekt_1.csproj.CopyComplete
 C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\obj\Debug\Projekt_1.dll
 C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\obj\Debug\Projekt_1.pdb
+C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\bin\EntityFramework.dll
+C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\bin\EntityFramework.xml
+C:\Users\Admin\OneDrive\Máy tính\New folder (3)\Project_1\Projekt_1\bin\EntityFramework.SqlServer.xml
