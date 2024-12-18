@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project1DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="passbook">
+    <Key>
+      <PropertyRef Name="SavingsBookID" />
+    </Key>
+    <Property Name="SavingsBookID" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="OpeningDate" Type="date" />
+    <Property Name="InitialDepositAmount" Type="int" />
+    <Property Name="InterestRate" Type="float" />
+    <Property Name="SavingsType" Type="int" />
+    <Property Name="IsClosed" Type="bit" />
+  </EntityType>
+  <EntityType Name="SavingsAccountType">
+    <Key>
+      <PropertyRef Name="SavingsTypeID" />
+    </Key>
+    <Property Name="SavingsTypeID" Type="int" Nullable="false" />
+    <Property Name="AccountTypeName" Type="varchar" MaxLength="255" />
+    <Property Name="InterestRate" Type="float" />
+    <Property Name="Term" Type="int" />
+    <Property Name="WithdrawalDays" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="AllowsAdditionalDeposits" Type="bit" />
+  </EntityType>
+  <EntityType Name="SavingsDeposit">
+    <Key>
+      <PropertyRef Name="DepositID" />
+    </Key>
+    <Property Name="DepositID" Type="int" Nullable="false" />
+    <Property Name="SavingsBookID" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="DepositAmount" Type="int" />
+    <Property Name="InterestRate" Type="float" />
+    <Property Name="DepositDate" Type="date" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_birth" Type="date" />
+    <Property Name="user_address" Type="nvarchar" MaxLength="255" />
+    <Property Name="user_identity" Type="int" />
+    <Property Name="user_phone" Type="int" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="WithdrawalSlip">
+    <Key>
+      <PropertyRef Name="WithdrawalID" />
+    </Key>
+    <Property Name="WithdrawalID" Type="int" Nullable="false" />
+    <Property Name="SavingsBookID" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="WithdrawalAmount" Type="int" />
+    <Property Name="WithdrawalDate" Type="date" />
+  </EntityType>
+  <Association Name="FK__passbook__Saving__4D94879B">
+    <End Role="SavingsAccountType" Type="Self.SavingsAccountType" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SavingsAccountType">
+        <PropertyRef Name="SavingsTypeID" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="SavingsType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__passbook__user_i__4E88ABD4">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SavingsDe__Savin__59FA5E80">
+    <End Role="passbook" Type="Self.passbook" Multiplicity="0..1" />
+    <End Role="SavingsDeposit" Type="Self.SavingsDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="SavingsDeposit">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SavingsDe__user___5AEE82B9">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="SavingsDeposit" Type="Self.SavingsDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="SavingsDeposit">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Withdrawa__Savin__5DCAEF64">
+    <End Role="passbook" Type="Self.passbook" Multiplicity="0..1" />
+    <End Role="WithdrawalSlip" Type="Self.WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Withdrawa__user___5EBF139D">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="WithdrawalSlip" Type="Self.WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="InsertPassbook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SavingsBookID" Type="int" Mode="In" />
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="OpeningDate" Type="date" Mode="In" />
+    <Parameter Name="InitialDepositAmount" Type="int" Mode="In" />
+    <Parameter Name="SavingsType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertSavingsDeposit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SavingsBookID" Type="int" Mode="In" />
+    <Parameter Name="DepositAmount" Type="int" Mode="In" />
+    <Parameter Name="DepositDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="InsertWithdrawalSlip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SavingsBookID" Type="int" Mode="In" />
+    <Parameter Name="WithdrawalAmount" Type="int" Mode="In" />
+    <Parameter Name="WithdrawalDate" Type="date" Mode="In" />
+  </Function>
+  <EntityContainer Name="Project1DBModelStoreContainer">
+    <EntitySet Name="passbook" EntityType="Self.passbook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SavingsAccountType" EntityType="Self.SavingsAccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SavingsDeposit" EntityType="Self.SavingsDeposit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WithdrawalSlip" EntityType="Self.WithdrawalSlip" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__passbook__Saving__4D94879B" Association="Self.FK__passbook__Saving__4D94879B">
+      <End Role="SavingsAccountType" EntitySet="SavingsAccountType" />
+      <End Role="passbook" EntitySet="passbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__passbook__user_i__4E88ABD4" Association="Self.FK__passbook__user_i__4E88ABD4">
+      <End Role="users" EntitySet="users" />
+      <End Role="passbook" EntitySet="passbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SavingsDe__Savin__59FA5E80" Association="Self.FK__SavingsDe__Savin__59FA5E80">
+      <End Role="passbook" EntitySet="passbook" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SavingsDe__user___5AEE82B9" Association="Self.FK__SavingsDe__user___5AEE82B9">
+      <End Role="users" EntitySet="users" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__Savin__5DCAEF64" Association="Self.FK__Withdrawa__Savin__5DCAEF64">
+      <End Role="passbook" EntitySet="passbook" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlip" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__user___5EBF139D" Association="Self.FK__Withdrawa__user___5EBF139D">
+      <End Role="users" EntitySet="users" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlip" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project1DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="passbook">
+    <Key>
+      <PropertyRef Name="SavingsBookID" />
+    </Key>
+    <Property Name="SavingsBookID" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="OpeningDate" Type="DateTime" Precision="0" />
+    <Property Name="InitialDepositAmount" Type="Int32" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="SavingsType" Type="Int32" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <NavigationProperty Name="SavingsAccountType" Relationship="Self.FK__passbook__Saving__4D94879B" FromRole="passbook" ToRole="SavingsAccountType" />
+    <NavigationProperty Name="user" Relationship="Self.FK__passbook__user_i__4E88ABD4" FromRole="passbook" ToRole="users" />
+    <NavigationProperty Name="SavingsDeposits" Relationship="Self.FK__SavingsDe__Savin__59FA5E80" FromRole="passbook" ToRole="SavingsDeposit" />
+    <NavigationProperty Name="WithdrawalSlips" Relationship="Self.FK__Withdrawa__Savin__5DCAEF64" FromRole="passbook" ToRole="WithdrawalSlip" />
+  </EntityType>
+  <EntityType Name="SavingsAccountType">
+    <Key>
+      <PropertyRef Name="SavingsTypeID" />
+    </Key>
+    <Property Name="SavingsTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="Term" Type="Int32" />
+    <Property Name="WithdrawalDays" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="AllowsAdditionalDeposits" Type="Boolean" />
+    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__Saving__4D94879B" FromRole="SavingsAccountType" ToRole="passbook" />
+  </EntityType>
+  <EntityType Name="SavingsDeposit">
+    <Key>
+      <PropertyRef Name="DepositID" />
+    </Key>
+    <Property Name="DepositID" Type="Int32" Nullable="false" />
+    <Property Name="SavingsBookID" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="DepositAmount" Type="Int32" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="DepositDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="passbook" Relationship="Self.FK__SavingsDe__Savin__59FA5E80" FromRole="SavingsDeposit" ToRole="passbook" />
+    <NavigationProperty Name="user" Relationship="Self.FK__SavingsDe__user___5AEE82B9" FromRole="SavingsDeposit" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_birth" Type="DateTime" Precision="0" />
+    <Property Name="user_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="user_identity" Type="Int32" />
+    <Property Name="user_phone" Type="Int32" />
+    <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__user_i__4E88ABD4" FromRole="users" ToRole="passbook" />
+    <NavigationProperty Name="SavingsDeposits" Relationship="Self.FK__SavingsDe__user___5AEE82B9" FromRole="users" ToRole="SavingsDeposit" />
+    <NavigationProperty Name="WithdrawalSlips" Relationship="Self.FK__Withdrawa__user___5EBF139D" FromRole="users" ToRole="WithdrawalSlip" />
+  </EntityType>
+  <EntityType Name="WithdrawalSlip">
+    <Key>
+      <PropertyRef Name="WithdrawalID" />
+    </Key>
+    <Property Name="WithdrawalID" Type="Int32" Nullable="false" />
+    <Property Name="SavingsBookID" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="WithdrawalAmount" Type="Int32" />
+    <Property Name="WithdrawalDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="passbook" Relationship="Self.FK__Withdrawa__Savin__5DCAEF64" FromRole="WithdrawalSlip" ToRole="passbook" />
+    <NavigationProperty Name="user" Relationship="Self.FK__Withdrawa__user___5EBF139D" FromRole="WithdrawalSlip" ToRole="users" />
+  </EntityType>
+  <Association Name="FK__passbook__Saving__4D94879B">
+    <End Role="SavingsAccountType" Type="Self.SavingsAccountType" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SavingsAccountType">
+        <PropertyRef Name="SavingsTypeID" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="SavingsType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__passbook__user_i__4E88ABD4">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SavingsDe__Savin__59FA5E80">
+    <End Role="passbook" Type="Self.passbook" Multiplicity="0..1" />
+    <End Role="SavingsDeposit" Type="Self.SavingsDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="SavingsDeposit">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Withdrawa__Savin__5DCAEF64">
+    <End Role="passbook" Type="Self.passbook" Multiplicity="0..1" />
+    <End Role="WithdrawalSlip" Type="Self.WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SavingsDe__user___5AEE82B9">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="SavingsDeposit" Type="Self.SavingsDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="SavingsDeposit">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Withdrawa__user___5EBF139D">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="WithdrawalSlip" Type="Self.WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Project1DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="passbooks" EntityType="Self.passbook" />
+    <EntitySet Name="SavingsAccountTypes" EntityType="Self.SavingsAccountType" />
+    <EntitySet Name="SavingsDeposits" EntityType="Self.SavingsDeposit" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="WithdrawalSlips" EntityType="Self.WithdrawalSlip" />
+    <AssociationSet Name="FK__passbook__Saving__4D94879B" Association="Self.FK__passbook__Saving__4D94879B">
+      <End Role="SavingsAccountType" EntitySet="SavingsAccountTypes" />
+      <End Role="passbook" EntitySet="passbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__passbook__user_i__4E88ABD4" Association="Self.FK__passbook__user_i__4E88ABD4">
+      <End Role="users" EntitySet="users" />
+      <End Role="passbook" EntitySet="passbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SavingsDe__Savin__59FA5E80" Association="Self.FK__SavingsDe__Savin__59FA5E80">
+      <End Role="passbook" EntitySet="passbooks" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__Savin__5DCAEF64" Association="Self.FK__Withdrawa__Savin__5DCAEF64">
+      <End Role="passbook" EntitySet="passbooks" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlips" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SavingsDe__user___5AEE82B9" Association="Self.FK__SavingsDe__user___5AEE82B9">
+      <End Role="users" EntitySet="users" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__user___5EBF139D" Association="Self.FK__Withdrawa__user___5EBF139D">
+      <End Role="users" EntitySet="users" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlips" />
+    </AssociationSet>
+    <FunctionImport Name="InsertPassbook">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="OpeningDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InitialDepositAmount" Mode="In" Type="Int32" />
+      <Parameter Name="SavingsType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertSavingsDeposit">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="DepositAmount" Mode="In" Type="Int32" />
+      <Parameter Name="DepositDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="InsertWithdrawalSlip">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="WithdrawalAmount" Mode="In" Type="Int32" />
+      <Parameter Name="WithdrawalDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
