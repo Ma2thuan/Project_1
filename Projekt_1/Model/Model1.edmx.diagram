@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0af21ad28131471a97311bdaa6da6117" Name="Diagram1">
-        <EntityTypeShape EntityType="Project1DBModel.passbook" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+      <Diagram DiagramId="1a8195b935c342ea8477d77546d37980" Name="Diagram1">
+        <EntityTypeShape EntityType="Project1DBModel.passbook" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Project1DBModel.SavingsAccountType" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Project1DBModel.SavingsDeposit" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Project1DBModel.user" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Project1DBModel.WithdrawalSlip" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="Project1DBModel.FK__passbook__Saving__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="Project1DBModel.FK__passbook__user_i__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__Savin__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__Savin__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__user___5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__user___5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__Savin__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__Savin__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__user___52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__user___5629CD9C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

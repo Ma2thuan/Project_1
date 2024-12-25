@@ -92,8 +92,11 @@ namespace Projekt_1.Controllers
         public ActionResult Create([Bind(Include = "DepositID,SavingsBookID,user_id,DepositAmount,InterestRate,DepositDate")] SavingsDeposit savingsDeposit)
         {
             // Kiểm tra số tiền gởi thêm có hợp lệ không
-            var additionalAmountValid = db.SavingsAccountTypes.Where(p => p.SavingsTypeID == passbook).Select(p => p.MinDepositAmount).FirstOrDefault() <= savingsDeposit.DepositAmount && db.SavingsAccountTypes.Where(p => p.InterestRate == savingsDeposit.InterestRate).Select(p => p.MaxDepositAmount).FirstOrDefault() >= savingsDeposit.DepositAmount;
-            savingsDeposit.DepositAmount >= ;
+            //var additionalAmountValid = db.SavingsAccountTypes.Where(p => p.SavingsTypeID == passbook).Select(p => p.MinDepositAmount).FirstOrDefault() <= savingsDeposit.DepositAmount && db.SavingsAccountTypes.Where(p => p.InterestRate == savingsDeposit.InterestRate).Select(p => p.MaxDepositAmount).FirstOrDefault() >= savingsDeposit.DepositAmount;
+            //savingsDeposit.DepositAmount >= ;
+
+
+            var additionalAmountValid = 10000000;
 
             // Nạp lãi suất từ SavingsBookID
             var interestRate = db.passbooks
@@ -108,7 +111,7 @@ namespace Projekt_1.Controllers
                          .FirstOrDefault();
 
             // Nếu không hợp lệ hoặc số tiền gởi thêm < 100000, thêm thông báo lỗi
-            if (!additionalAmountValid || savingsDeposit.DepositAmount < 100000)
+            if (/*!additionalAmountValid || */ savingsDeposit.DepositAmount < 100000)
             {
                 ModelState.AddModelError("", "Số tiền gởi thêm tối thiểu là 100.000đ và chỉ được gửi thêm khi đến kỳ hạn.");
             }

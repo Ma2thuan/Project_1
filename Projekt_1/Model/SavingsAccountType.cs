@@ -25,9 +25,9 @@ namespace Projekt_1.Model
         public Nullable<double> InterestRate { get; set; }
         public Nullable<int> Term { get; set; }
         public Nullable<int> WithdrawalDays { get; set; }
+        public Nullable<int> MinimumDeposit { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> AllowsAdditionalDeposits { get; set; }
-        public Nullable<int> MinimumDeposit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<passbook> passbooks { get; set; }

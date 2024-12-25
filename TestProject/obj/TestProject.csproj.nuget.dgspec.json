@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vyna1\\source\\repos\\Project_1\\TestProject\\TestProject.csproj": {}
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (4)\\TestProject\\TestProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vyna1\\source\\repos\\Project_1\\TestProject\\TestProject.csproj": {
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (4)\\TestProject\\TestProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vyna1\\source\\repos\\Project_1\\TestProject\\TestProject.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (4)\\TestProject\\TestProject.csproj",
         "projectName": "TestProject",
-        "projectPath": "C:\\Users\\vyna1\\source\\repos\\Project_1\\TestProject\\TestProject.csproj",
-        "packagesPath": "C:\\Users\\vyna1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vyna1\\Source\\Repos\\Project_1\\TestProject\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (4)\\TestProject\\TestProject.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\New folder (4)\\TestProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Visual Studio Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vyna1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,53 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.5.1, )"
-            },
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[3.7.0, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[3.7.0, )"
-            },
-            "Microsoft.AspNet.Razor": {
-              "target": "Package",
-              "version": "[3.3.0, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.12.0, )"
-            },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.2, )"
-            },
-            "jQuery": {
-              "target": "Package",
-              "version": "[3.7.1, )"
-            },
-            "jQuery.Validation": {
-              "target": "Package",
-              "version": "[1.21.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -97,12 +50,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

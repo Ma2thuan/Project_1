@@ -25,10 +25,10 @@ namespace Projekt_1.Model
         public Nullable<int> user_id { get; set; }
         public Nullable<System.DateTime> OpeningDate { get; set; }
         public Nullable<int> InitialDepositAmount { get; set; }
+        public Nullable<int> DepositAmount { get; set; }
         public Nullable<double> InterestRate { get; set; }
         public Nullable<int> SavingsType { get; set; }
         public Nullable<bool> IsClosed { get; set; }
-        public Nullable<int> DepositAmount { get; set; }
     
         public virtual SavingsAccountType SavingsAccountType { get; set; }
         public virtual user user { get; set; }
