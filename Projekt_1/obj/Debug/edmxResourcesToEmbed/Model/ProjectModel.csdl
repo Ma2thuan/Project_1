@@ -1,34 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Project1DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="interestRate">
-    <Key>
-      <PropertyRef Name="term" />
-    </Key>
-    <Property Name="term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="interestRate1" Type="Double" />
-  </EntityType>
   <EntityType Name="passbook">
     <Key>
-      <PropertyRef Name="passbook_id" />
+      <PropertyRef Name="SavingsBookID" />
     </Key>
+    <Property Name="SavingsBookID" Type="Int32" Nullable="false" />
     <Property Name="user_id" Type="Int32" />
-    <Property Name="passbook_id" Type="Int32" Nullable="false" />
-    <Property Name="balance" Type="Double" />
-    <Property Name="startDate" Type="DateTime" Precision="0" />
-    <Property Name="endDate" Type="DateTime" Precision="0" />
-    <Property Name="term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="user" Relationship="Self.FK__passbook__user_i__398D8EEE" FromRole="passbook" ToRole="users" />
+    <Property Name="OpeningDate" Type="DateTime" Precision="0" />
+    <Property Name="InitialDepositAmount" Type="Int32" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="SavingsType" Type="Int32" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <NavigationProperty Name="SavingsAccountType" Relationship="Self.FK__passbook__Saving__4D94879B" FromRole="passbook" ToRole="SavingsAccountType" />
+    <NavigationProperty Name="user" Relationship="Self.FK__passbook__user_i__4E88ABD4" FromRole="passbook" ToRole="users" />
+    <NavigationProperty Name="SavingsDeposits" Relationship="Project1DBModel.FK__SavingsDe__Savin__5BE2A6F2" FromRole="passbook" ToRole="SavingsDeposit" />
+    <NavigationProperty Name="WithdrawalSlips" Relationship="Project1DBModel.FK__Withdrawa__Savin__5FB337D6" FromRole="passbook" ToRole="WithdrawalSlip" />
   </EntityType>
-  <EntityType Name="Transaction">
+  <EntityType Name="SavingsAccountType">
     <Key>
-      <PropertyRef Name="transactionID" />
+      <PropertyRef Name="SavingsTypeID" />
     </Key>
-    <Property Name="transactionID" Type="Int32" Nullable="false" />
-    <Property Name="user_id" Type="Int32" />
-    <Property Name="transactionDate" Type="DateTime" Precision="0" />
-    <Property Name="transactionAmount" Type="Double" />
-    <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="user" Relationship="Self.FK__Transacti__user___3E52440B" FromRole="Transactions" ToRole="users" />
+    <Property Name="SavingsTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="Term" Type="Int32" />
+    <Property Name="WithdrawalDays" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="AllowsAdditionalDeposits" Type="Boolean" />
+    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__Saving__4D94879B" FromRole="SavingsAccountType" ToRole="passbook" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -40,10 +39,23 @@
     <Property Name="user_identity" Type="Int32" />
     <Property Name="user_phone" Type="Int32" />
     <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__user_i__398D8EEE" FromRole="users" ToRole="passbook" />
-    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__user___3E52440B" FromRole="users" ToRole="Transactions" />
+    <NavigationProperty Name="passbooks" Relationship="Self.FK__passbook__user_i__4E88ABD4" FromRole="users" ToRole="passbook" />
+    <NavigationProperty Name="SavingsDeposits" Relationship="Project1DBModel.FK__SavingsDe__user___5CD6CB2B" FromRole="user" ToRole="SavingsDeposit" />
+    <NavigationProperty Name="WithdrawalSlips" Relationship="Project1DBModel.FK__Withdrawa__user___60A75C0F" FromRole="user" ToRole="WithdrawalSlip" />
   </EntityType>
-  <Association Name="FK__passbook__user_i__398D8EEE">
+  <Association Name="FK__passbook__Saving__4D94879B">
+    <End Role="SavingsAccountType" Type="Self.SavingsAccountType" Multiplicity="0..1" />
+    <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SavingsAccountType">
+        <PropertyRef Name="SavingsTypeID" />
+      </Principal>
+      <Dependent Role="passbook">
+        <PropertyRef Name="SavingsType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__passbook__user_i__4E88ABD4">
     <End Role="users" Type="Self.user" Multiplicity="0..1" />
     <End Role="passbook" Type="Self.passbook" Multiplicity="*" />
     <ReferentialConstraint>
@@ -55,35 +67,125 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Transacti__user___3E52440B">
-    <End Role="users" Type="Self.user" Multiplicity="0..1" />
-    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+  <EntityContainer Name="Project1DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="passbooks" EntityType="Self.passbook" />
+    <EntitySet Name="SavingsAccountTypes" EntityType="Self.SavingsAccountType" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__passbook__Saving__4D94879B" Association="Self.FK__passbook__Saving__4D94879B">
+      <End Role="SavingsAccountType" EntitySet="SavingsAccountTypes" />
+      <End Role="passbook" EntitySet="passbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__passbook__user_i__4E88ABD4" Association="Self.FK__passbook__user_i__4E88ABD4">
+      <End Role="users" EntitySet="users" />
+      <End Role="passbook" EntitySet="passbooks" />
+    </AssociationSet>
+    <FunctionImport Name="InsertPassbook">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="OpeningDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InitialDepositAmount" Mode="In" Type="Int32" />
+      <Parameter Name="SavingsType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertSavingsDeposit">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="DepositAmount" Mode="In" Type="Int32" />
+      <Parameter Name="DepositDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="InsertWithdrawalSlip">
+      <Parameter Name="SavingsBookID" Mode="In" Type="Int32" />
+      <Parameter Name="WithdrawalAmount" Mode="In" Type="Int32" />
+      <Parameter Name="WithdrawalDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="SavingsDeposits" EntityType="Project1DBModel.SavingsDeposit" />
+    <EntitySet Name="WithdrawalSlips" EntityType="Project1DBModel.WithdrawalSlip" />
+    <AssociationSet Name="FK__SavingsDe__Savin__5BE2A6F2" Association="Project1DBModel.FK__SavingsDe__Savin__5BE2A6F2">
+      <End Role="passbook" EntitySet="passbooks" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__Savin__5FB337D6" Association="Project1DBModel.FK__Withdrawa__Savin__5FB337D6">
+      <End Role="passbook" EntitySet="passbooks" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlips" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SavingsDe__user___5CD6CB2B" Association="Project1DBModel.FK__SavingsDe__user___5CD6CB2B">
+      <End Role="user" EntitySet="users" />
+      <End Role="SavingsDeposit" EntitySet="SavingsDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Withdrawa__user___60A75C0F" Association="Project1DBModel.FK__Withdrawa__user___60A75C0F">
+      <End Role="user" EntitySet="users" />
+      <End Role="WithdrawalSlip" EntitySet="WithdrawalSlips" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="SavingsDeposit">
+    <Key>
+      <PropertyRef Name="DepositID" />
+    </Key>
+    <Property Name="DepositID" Type="Int32" Nullable="false" />
+    <Property Name="SavingsBookID" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="DepositAmount" Type="Int32" />
+    <Property Name="InterestRate" Type="Double" />
+    <Property Name="DepositDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="passbook" Relationship="Project1DBModel.FK__SavingsDe__Savin__5BE2A6F2" FromRole="SavingsDeposit" ToRole="passbook" />
+    <NavigationProperty Name="user" Relationship="Project1DBModel.FK__SavingsDe__user___5CD6CB2B" FromRole="SavingsDeposit" ToRole="user" />
+  </EntityType>
+  <EntityType Name="WithdrawalSlip">
+    <Key>
+      <PropertyRef Name="WithdrawalID" />
+    </Key>
+    <Property Name="WithdrawalID" Type="Int32" Nullable="false" />
+    <Property Name="SavingsBookID" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="WithdrawalAmount" Type="Int32" />
+    <Property Name="WithdrawalDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="passbook" Relationship="Project1DBModel.FK__Withdrawa__Savin__5FB337D6" FromRole="WithdrawalSlip" ToRole="passbook" />
+    <NavigationProperty Name="user" Relationship="Project1DBModel.FK__Withdrawa__user___60A75C0F" FromRole="WithdrawalSlip" ToRole="user" />
+  </EntityType>
+  <Association Name="FK__SavingsDe__Savin__5BE2A6F2">
+    <End Type="Project1DBModel.passbook" Role="passbook" Multiplicity="0..1" />
+    <End Type="Project1DBModel.SavingsDeposit" Role="SavingsDeposit" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="users">
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="SavingsDeposit">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Withdrawa__Savin__5FB337D6">
+    <End Type="Project1DBModel.passbook" Role="passbook" Multiplicity="0..1" />
+    <End Type="Project1DBModel.WithdrawalSlip" Role="WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="passbook">
+        <PropertyRef Name="SavingsBookID" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="SavingsBookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SavingsDe__user___5CD6CB2B">
+    <End Type="Project1DBModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="Project1DBModel.SavingsDeposit" Role="SavingsDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
         <PropertyRef Name="user_id" />
       </Principal>
-      <Dependent Role="Transactions">
+      <Dependent Role="SavingsDeposit">
         <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Project1DBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="interestRates" EntityType="Self.interestRate" />
-    <EntitySet Name="passbooks" EntityType="Self.passbook" />
-    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
-    <EntitySet Name="users" EntityType="Self.user" />
-    <AssociationSet Name="FK__passbook__user_i__398D8EEE" Association="Self.FK__passbook__user_i__398D8EEE">
-      <End Role="users" EntitySet="users" />
-      <End Role="passbook" EntitySet="passbooks" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Transacti__user___3E52440B" Association="Self.FK__Transacti__user___3E52440B">
-      <End Role="users" EntitySet="users" />
-      <End Role="Transactions" EntitySet="Transactions" />
-    </AssociationSet>
-    <FunctionImport Name="DepositMoney">
-      <Parameter Name="user_id" Mode="In" Type="Int32" />
-      <Parameter Name="passbook_id" Mode="In" Type="Int32" />
-      <Parameter Name="amount" Mode="In" Type="Double" />
-    </FunctionImport>
-  </EntityContainer>
+  <Association Name="FK__Withdrawa__user___60A75C0F">
+    <End Type="Project1DBModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="Project1DBModel.WithdrawalSlip" Role="WithdrawalSlip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="WithdrawalSlip">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

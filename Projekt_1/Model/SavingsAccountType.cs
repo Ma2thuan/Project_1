@@ -12,28 +12,23 @@ namespace Projekt_1.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class SavingsAccountType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public SavingsAccountType()
         {
             this.passbooks = new HashSet<passbook>();
-            this.SavingsDeposits = new HashSet<SavingsDeposit>();
-            this.WithdrawalSlips = new HashSet<WithdrawalSlip>();
         }
     
-        public int user_id { get; set; }
-        public Nullable<System.DateTime> user_birth { get; set; }
-        public string user_address { get; set; }
-        public Nullable<int> user_identity { get; set; }
-        public Nullable<int> user_phone { get; set; }
-        public string user_name { get; set; }
+        public int SavingsTypeID { get; set; }
+        public string AccountTypeName { get; set; }
+        public Nullable<double> InterestRate { get; set; }
+        public Nullable<int> Term { get; set; }
+        public Nullable<int> WithdrawalDays { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> AllowsAdditionalDeposits { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<passbook> passbooks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SavingsDeposit> SavingsDeposits { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WithdrawalSlip> WithdrawalSlips { get; set; }
     }
 }

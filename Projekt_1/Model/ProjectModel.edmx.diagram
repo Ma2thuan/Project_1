@@ -4,13 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79578652d84840fa99127e795d415478" Name="Diagram1">
-        <EntityTypeShape EntityType="Project1DBModel.interestRate" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Project1DBModel.passbook" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Project1DBModel.Transaction" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Project1DBModel.user" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <AssociationConnector Association="Project1DBModel.FK__passbook__user_i__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="Project1DBModel.FK__Transacti__user___3E52440B" ManuallyRouted="false" />
+      <Diagram DiagramId="72e02c46834f45b2b46a47490c15f626" Name="Diagram1">
+        <EntityTypeShape EntityType="Project1DBModel.passbook" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project1DBModel.SavingsAccountType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project1DBModel.user" Width="1.5" PointX="6.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Project1DBModel.FK__passbook__Saving__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1DBModel.FK__passbook__user_i__4E88ABD4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Project1DBModel.SavingsDeposit" Width="1.5" PointX="4" PointY="4.625" />
+        <EntityTypeShape EntityType="Project1DBModel.WithdrawalSlip" Width="1.5" PointX="9.125" PointY="1.375" />
+        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__Savin__5BE2A6F2" />
+        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__Savin__5FB337D6" />
+        <AssociationConnector Association="Project1DBModel.FK__SavingsDe__user___5CD6CB2B" />
+        <AssociationConnector Association="Project1DBModel.FK__Withdrawa__user___60A75C0F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

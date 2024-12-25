@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2>Delete</h2>
@@ -13,35 +13,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.balance)
+            @Html.DisplayNameFor(model => model.OpeningDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.balance)
+            @Html.DisplayFor(model => model.OpeningDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.startDate)
+            @Html.DisplayNameFor(model => model.InitialDepositAmount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.startDate)
+            @Html.DisplayFor(model => model.InitialDepositAmount)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.endDate)
+            @Html.DisplayNameFor(model => model.InterestRate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.endDate)
+            @Html.DisplayFor(model => model.InterestRate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.term)
+            @Html.DisplayNameFor(model => model.IsClosed)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.term)
+            @Html.DisplayFor(model => model.IsClosed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingsAccountType.AccountTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingsAccountType.AccountTypeName)
         </dd>
 
         <dt>

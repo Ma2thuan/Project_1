@@ -12,14 +12,16 @@ namespace Projekt_1.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Transaction
+    public partial class SavingsDeposit
     {
-        public int transactionID { get; set; }
+        public int DepositID { get; set; }
+        public Nullable<int> SavingsBookID { get; set; }
         public Nullable<int> user_id { get; set; }
-        public Nullable<System.DateTime> transactionDate { get; set; }
-        public Nullable<double> transactionAmount { get; set; }
-        public string transactionType { get; set; }
+        public Nullable<int> DepositAmount { get; set; }
+        public Nullable<double> InterestRate { get; set; }
+        public Nullable<System.DateTime> DepositDate { get; set; }
     
+        public virtual passbook passbook { get; set; }
         public virtual user user { get; set; }
     }
 }

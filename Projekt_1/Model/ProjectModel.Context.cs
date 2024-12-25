@@ -27,26 +27,69 @@ namespace Projekt_1.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<interestRate> interestRates { get; set; }
         public virtual DbSet<passbook> passbooks { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<SavingsAccountType> SavingsAccountTypes { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<SavingsDeposit> SavingsDeposits { get; set; }
+        public virtual DbSet<WithdrawalSlip> WithdrawalSlips { get; set; }
     
-        public virtual int DepositMoney(Nullable<int> user_id, Nullable<int> passbook_id, Nullable<double> amount)
+        public virtual int InsertPassbook(Nullable<int> savingsBookID, Nullable<int> user_id, Nullable<System.DateTime> openingDate, Nullable<int> initialDepositAmount, Nullable<int> savingsType)
         {
+            var savingsBookIDParameter = savingsBookID.HasValue ?
+                new ObjectParameter("SavingsBookID", savingsBookID) :
+                new ObjectParameter("SavingsBookID", typeof(int));
+    
             var user_idParameter = user_id.HasValue ?
                 new ObjectParameter("user_id", user_id) :
                 new ObjectParameter("user_id", typeof(int));
     
-            var passbook_idParameter = passbook_id.HasValue ?
-                new ObjectParameter("passbook_id", passbook_id) :
-                new ObjectParameter("passbook_id", typeof(int));
+            var openingDateParameter = openingDate.HasValue ?
+                new ObjectParameter("OpeningDate", openingDate) :
+                new ObjectParameter("OpeningDate", typeof(System.DateTime));
     
-            var amountParameter = amount.HasValue ?
-                new ObjectParameter("amount", amount) :
-                new ObjectParameter("amount", typeof(double));
+            var initialDepositAmountParameter = initialDepositAmount.HasValue ?
+                new ObjectParameter("InitialDepositAmount", initialDepositAmount) :
+                new ObjectParameter("InitialDepositAmount", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DepositMoney", user_idParameter, passbook_idParameter, amountParameter);
+            var savingsTypeParameter = savingsType.HasValue ?
+                new ObjectParameter("SavingsType", savingsType) :
+                new ObjectParameter("SavingsType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertPassbook", savingsBookIDParameter, user_idParameter, openingDateParameter, initialDepositAmountParameter, savingsTypeParameter);
+        }
+    
+        public virtual int InsertSavingsDeposit(Nullable<int> savingsBookID, Nullable<int> depositAmount, Nullable<System.DateTime> depositDate)
+        {
+            var savingsBookIDParameter = savingsBookID.HasValue ?
+                new ObjectParameter("SavingsBookID", savingsBookID) :
+                new ObjectParameter("SavingsBookID", typeof(int));
+    
+            var depositAmountParameter = depositAmount.HasValue ?
+                new ObjectParameter("DepositAmount", depositAmount) :
+                new ObjectParameter("DepositAmount", typeof(int));
+    
+            var depositDateParameter = depositDate.HasValue ?
+                new ObjectParameter("DepositDate", depositDate) :
+                new ObjectParameter("DepositDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertSavingsDeposit", savingsBookIDParameter, depositAmountParameter, depositDateParameter);
+        }
+    
+        public virtual int InsertWithdrawalSlip(Nullable<int> savingsBookID, Nullable<int> withdrawalAmount, Nullable<System.DateTime> withdrawalDate)
+        {
+            var savingsBookIDParameter = savingsBookID.HasValue ?
+                new ObjectParameter("SavingsBookID", savingsBookID) :
+                new ObjectParameter("SavingsBookID", typeof(int));
+    
+            var withdrawalAmountParameter = withdrawalAmount.HasValue ?
+                new ObjectParameter("WithdrawalAmount", withdrawalAmount) :
+                new ObjectParameter("WithdrawalAmount", typeof(int));
+    
+            var withdrawalDateParameter = withdrawalDate.HasValue ?
+                new ObjectParameter("WithdrawalDate", withdrawalDate) :
+                new ObjectParameter("WithdrawalDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertWithdrawalSlip", savingsBookIDParameter, withdrawalAmountParameter, withdrawalDateParameter);
         }
     }
 }

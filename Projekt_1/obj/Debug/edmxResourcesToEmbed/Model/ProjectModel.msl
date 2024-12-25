@@ -1,34 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Project1DBModelStoreContainer" CdmEntityContainer="Project1DBEntities">
-    <EntitySetMapping Name="interestRates">
-      <EntityTypeMapping TypeName="Project1DBModel.interestRate">
-        <MappingFragment StoreEntitySet="interestRates">
-          <ScalarProperty Name="term" ColumnName="term" />
-          <ScalarProperty Name="interestRate1" ColumnName="interestRate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="passbooks">
       <EntityTypeMapping TypeName="Project1DBModel.passbook">
         <MappingFragment StoreEntitySet="passbook">
+          <ScalarProperty Name="SavingsBookID" ColumnName="SavingsBookID" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="passbook_id" ColumnName="passbook_id" />
-          <ScalarProperty Name="balance" ColumnName="balance" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="term" ColumnName="term" />
+          <ScalarProperty Name="OpeningDate" ColumnName="OpeningDate" />
+          <ScalarProperty Name="InitialDepositAmount" ColumnName="InitialDepositAmount" />
+          <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+          <ScalarProperty Name="SavingsType" ColumnName="SavingsType" />
+          <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Transactions">
-      <EntityTypeMapping TypeName="Project1DBModel.Transaction">
-        <MappingFragment StoreEntitySet="Transactions">
-          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
-          <ScalarProperty Name="transactionAmount" ColumnName="transactionAmount" />
-          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+    <EntitySetMapping Name="SavingsAccountTypes">
+      <EntityTypeMapping TypeName="Project1DBModel.SavingsAccountType">
+        <MappingFragment StoreEntitySet="SavingsAccountType">
+          <ScalarProperty Name="SavingsTypeID" ColumnName="SavingsTypeID" />
+          <ScalarProperty Name="AccountTypeName" ColumnName="AccountTypeName" />
+          <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+          <ScalarProperty Name="Term" ColumnName="Term" />
+          <ScalarProperty Name="WithdrawalDays" ColumnName="WithdrawalDays" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AllowsAdditionalDeposits" ColumnName="AllowsAdditionalDeposits" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -44,6 +39,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="DepositMoney" FunctionName="Project1DBModel.Store.DepositMoney" />
+    <FunctionImportMapping FunctionImportName="InsertPassbook" FunctionName="Project1DBModel.Store.InsertPassbook" />
+    <FunctionImportMapping FunctionImportName="InsertSavingsDeposit" FunctionName="Project1DBModel.Store.InsertSavingsDeposit" />
+    <FunctionImportMapping FunctionImportName="InsertWithdrawalSlip" FunctionName="Project1DBModel.Store.InsertWithdrawalSlip" />
+    <EntitySetMapping Name="SavingsDeposits">
+      <EntityTypeMapping TypeName="Project1DBModel.SavingsDeposit">
+        <MappingFragment StoreEntitySet="SavingsDeposit">
+          <ScalarProperty Name="DepositDate" ColumnName="DepositDate" />
+          <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="SavingsBookID" ColumnName="SavingsBookID" />
+          <ScalarProperty Name="DepositID" ColumnName="DepositID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WithdrawalSlips">
+      <EntityTypeMapping TypeName="Project1DBModel.WithdrawalSlip">
+        <MappingFragment StoreEntitySet="WithdrawalSlip">
+          <ScalarProperty Name="WithdrawalDate" ColumnName="WithdrawalDate" />
+          <ScalarProperty Name="WithdrawalAmount" ColumnName="WithdrawalAmount" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="SavingsBookID" ColumnName="SavingsBookID" />
+          <ScalarProperty Name="WithdrawalID" ColumnName="WithdrawalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

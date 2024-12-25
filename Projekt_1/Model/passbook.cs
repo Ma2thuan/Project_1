@@ -14,13 +14,26 @@ namespace Projekt_1.Model
     
     public partial class passbook
     {
-        public Nullable<int> user_id { get; set; }
-        public int passbook_id { get; set; }
-        public Nullable<double> balance { get; set; }
-        public Nullable<System.DateTime> startDate { get; set; }
-        public Nullable<System.DateTime> endDate { get; set; }
-        public string term { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public passbook()
+        {
+            this.SavingsDeposits = new HashSet<SavingsDeposit>();
+            this.WithdrawalSlips = new HashSet<WithdrawalSlip>();
+        }
     
+        public int SavingsBookID { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public Nullable<System.DateTime> OpeningDate { get; set; }
+        public Nullable<int> InitialDepositAmount { get; set; }
+        public Nullable<double> InterestRate { get; set; }
+        public Nullable<int> SavingsType { get; set; }
+        public Nullable<bool> IsClosed { get; set; }
+    
+        public virtual SavingsAccountType SavingsAccountType { get; set; }
         public virtual user user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SavingsDeposit> SavingsDeposits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WithdrawalSlip> WithdrawalSlips { get; set; }
     }
 }

@@ -12,9 +12,15 @@ namespace Projekt_1.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class interestRate
+    public partial class WithdrawalSlip
     {
-        public string term { get; set; }
-        public Nullable<double> interestRate1 { get; set; }
+        public int WithdrawalID { get; set; }
+        public Nullable<int> SavingsBookID { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public Nullable<int> WithdrawalAmount { get; set; }
+        public Nullable<System.DateTime> WithdrawalDate { get; set; }
+    
+        public virtual passbook passbook { get; set; }
+        public virtual user user { get; set; }
     }
 }

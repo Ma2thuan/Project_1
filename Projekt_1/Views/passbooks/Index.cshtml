@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -13,16 +13,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.balance)
+            @Html.DisplayNameFor(model => model.OpeningDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.startDate)
+            @Html.DisplayNameFor(model => model.InitialDepositAmount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.endDate)
+            @Html.DisplayNameFor(model => model.InterestRate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.term)
+            @Html.DisplayNameFor(model => model.IsClosed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SavingsAccountType.AccountTypeName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.user.user_address)
@@ -33,24 +36,27 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.balance)
+            @Html.DisplayFor(modelItem => item.OpeningDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.startDate)
+            @Html.DisplayFor(modelItem => item.InitialDepositAmount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.endDate)
+            @Html.DisplayFor(modelItem => item.InterestRate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.term)
+            @Html.DisplayFor(modelItem => item.IsClosed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SavingsAccountType.AccountTypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.user.user_address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.passbook_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.passbook_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.passbook_id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.SavingsBookID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SavingsBookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SavingsBookID })
         </td>
     </tr>
 }
