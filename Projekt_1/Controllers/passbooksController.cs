@@ -17,9 +17,31 @@ namespace Projekt_1.Controllers
         // GET: passbooks
         public ActionResult Index()
         {
-            var passbooks = db.passbooks.Include(p => p.user);
+            var passbooks = db.passbooks.Include(p => p.SavingsAccountType).Include(p => p.user);
             return View(passbooks.ToList());
         }
+
+        public ActionResult Search(int? initialDepositAmount, int? depositAmount)
+        {
+            var passbooks = db.passbooks.Include(p => p.SavingsAccountType).Include(p => p.user);
+
+            if (initialDepositAmount.HasValue)
+            {
+                passbooks = passbooks.Where(p => p.InitialDepositAmount <= initialDepositAmount.Value);
+            }
+
+            if (depositAmount.HasValue)
+            {
+                passbooks = passbooks.Where(p => p.DepositAmount <= depositAmount.Value);
+            }
+
+            ViewBag.InitialDepositAmount = initialDepositAmount;
+            ViewBag.DepositAmount = depositAmount;
+
+            return View("Index", passbooks.ToList());
+        }
+
+
 
         // GET: passbooks/Details/5
         public ActionResult Details(int? id)
@@ -39,6 +61,7 @@ namespace Projekt_1.Controllers
         // GET: passbooks/Create
         public ActionResult Create()
         {
+            ViewBag.SavingsType = new SelectList(db.SavingsAccountTypes, "SavingsTypeID", "AccountTypeName");
             ViewBag.user_id = new SelectList(db.users, "user_id", "user_address");
             return View();
         }
@@ -48,7 +71,7 @@ namespace Projekt_1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "user_id,passbook_id,balance,startDate,endDate,term")] passbook passbook)
+        public ActionResult Create([Bind(Include = "SavingsBookID,user_id,OpeningDate,InitialDepositAmount,DepositAmount,InterestRate,SavingsType,IsClosed")] passbook passbook)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +80,7 @@ namespace Projekt_1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SavingsType = new SelectList(db.SavingsAccountTypes, "SavingsTypeID", "AccountTypeName", passbook.SavingsType);
             ViewBag.user_id = new SelectList(db.users, "user_id", "user_address", passbook.user_id);
             return View(passbook);
         }
@@ -73,6 +97,7 @@ namespace Projekt_1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SavingsType = new SelectList(db.SavingsAccountTypes, "SavingsTypeID", "AccountTypeName", passbook.SavingsType);
             ViewBag.user_id = new SelectList(db.users, "user_id", "user_address", passbook.user_id);
             return View(passbook);
         }
@@ -82,7 +107,7 @@ namespace Projekt_1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "user_id,passbook_id,balance,startDate,endDate,term")] passbook passbook)
+        public ActionResult Edit([Bind(Include = "SavingsBookID,user_id,OpeningDate,InitialDepositAmount,DepositAmount,InterestRate,SavingsType,IsClosed")] passbook passbook)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +115,7 @@ namespace Projekt_1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SavingsType = new SelectList(db.SavingsAccountTypes, "SavingsTypeID", "AccountTypeName", passbook.SavingsType);
             ViewBag.user_id = new SelectList(db.users, "user_id", "user_address", passbook.user_id);
             return View(passbook);
         }
